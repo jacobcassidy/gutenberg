@@ -223,6 +223,7 @@ export default function useEntityRecord< RecordType >(
 	};
 }
 
+/* eslint-disable react-hooks/rules-of-hooks */
 export function __experimentalUseEntityRecord(
 	kind: string,
 	name: string,
@@ -235,3 +236,4 @@ export function __experimentalUseEntityRecord(
 	} );
 	return useEntityRecord( kind, name, recordId, options );
 }
+/* eslint-enable react-hooks/rules-of-hooks */
