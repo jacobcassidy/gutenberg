@@ -103,7 +103,7 @@
 		"equivalent-key-map": "0.2.2",
 		"esbuild": "0.18.20",
 		"escape-html": "1.0.3",
-		"eslint": "9.11.0",
+		"eslint": "9.11.1",
 		"eslint-config-prettier": "9.1.0",
 		"eslint-import-resolver-node": "0.3.9",
 		"eslint-plugin-import": "2.31.0",
