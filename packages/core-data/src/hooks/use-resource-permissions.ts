@@ -209,7 +209,6 @@ function useResourcePermissions< IdType = void >(
 
 export default useResourcePermissions;
 
-/* eslint-disable react-hooks/rules-of-hooks */
 export function __experimentalUseResourcePermissions(
 	resource: string,
 	id?: unknown
@@ -220,4 +219,3 @@ export function __experimentalUseResourcePermissions(
 	} );
 	return useResourcePermissions( resource, id );
 }
-/* eslint-enable react-hooks/rules-of-hooks */

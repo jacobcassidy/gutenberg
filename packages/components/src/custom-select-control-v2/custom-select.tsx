@@ -81,7 +81,6 @@ const CustomSelectButton = ( {
 	);
 };
 
-/* eslint-disable react-hooks/rules-of-hooks */
 function _CustomSelect(
 	props: _CustomSelectInternalProps &
 		_CustomSelectProps &
@@ -157,6 +156,5 @@ function _CustomSelect(
 		</div>
 	);
 }
-/* eslint-enable react-hooks/rules-of-hooks */
 
 export default _CustomSelect;

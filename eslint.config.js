@@ -315,6 +315,7 @@ module.exports = [
 			'import/no-unresolved': 'off',
 			'import/named': 'off',
 			'@wordpress/data-no-store-string-literals': 'off',
+			'react-compiler/react-compiler': 'off',
 		},
 	},
 	{
@@ -697,6 +698,7 @@ module.exports = [
 	{
 		files: [ 'packages/interactivity*/src/**' ],
 		rules: {
+			'react-compiler/react-compiler': 'off',
 			'react/react-in-jsx-scope': 'error',
 		},
 	},
@@ -714,6 +716,26 @@ module.exports = [
 		},
 		rules: {
 			'import/no-unresolved': 'off',
+		},
+	},
+	{
+		// eslint-plugin-react-hooks v5 forbids hooks started from underscore.
+		// @see https://github.com/facebook/react/pull/25162
+		// Experimental hooks in following files should be refactored.
+		// After that the config can be removed.
+		name: 'gutenberg/rules-of-hooks-suppression',
+		files: [
+			'packages/block-editor/src/components/block-variation-transforms/index.js',
+			'packages/block-editor/src/components/copy-handler/index.js',
+			'packages/block-editor/src/hooks/block-style-variation.js',
+			'packages/components/src/custom-select-control-v2/custom-select.tsx',
+			'packages/core-data/src/hooks/use-entity-record.ts',
+			'packages/core-data/src/hooks/use-entity-records.ts',
+			'packages/core-data/src/hooks/use-resource-permissions.ts',
+			'packages/data/src/components/use-select/index.js',
+		],
+		rules: {
+			'react-hooks/rules-of-hooks': 'off',
 		},
 	},
 ];

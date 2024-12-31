@@ -66,7 +66,6 @@ function OverrideStyles( { override } ) {
 	usePrivateStyleOverride( override );
 }
 
-/* eslint-disable react-hooks/rules-of-hooks */
 /**
  * This component is used to generate new block style variation overrides
  * based on an incoming theme config. If a matching style is found in the config,
@@ -181,7 +180,6 @@ export function __unstableBlockStyleVariationOverridesWithConfig( { config } ) {
 		</>
 	);
 }
-/* eslint-enable react-hooks/rules-of-hooks */
 
 /**
  * Retrieves any variation styles data and resolves any referenced values.
