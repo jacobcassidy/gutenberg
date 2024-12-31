@@ -11,6 +11,8 @@ const testingLibrary = require( 'eslint-plugin-testing-library' );
 const jest = require( 'eslint-plugin-jest' );
 const tseslint = require( 'typescript-eslint' );
 const ssrFriendly = require( 'eslint-plugin-ssr-friendly' );
+const react = require( 'eslint-plugin-react' );
+const reactCompiler = require( 'eslint-plugin-react-compiler' );
 const { fixupConfigRules, fixupPluginRules } = require( '@eslint/compat' );
 
 /**
@@ -21,7 +23,6 @@ const { version } = require( './package' );
  * WordPress dependencies
  */
 const wordPress = require( '@wordpress/eslint-plugin' );
-const react = require( 'eslint-plugin-react' );
 
 /**
  * Regular expression string matching a SemVer string with equal major/minor to
@@ -228,6 +229,9 @@ module.exports = [
 		},
 	} ),
 	{
+		plugins: {
+			'react-compiler': reactCompiler,
+		},
 		languageOptions: {
 			globals: {
 				wp: 'off',
@@ -276,6 +280,15 @@ module.exports = [
 				'error',
 				{
 					definedTags: [ 'jest-environment' ],
+				},
+			],
+			'react-compiler/react-compiler': [
+				'error',
+				{
+					environment: {
+						enableTreatRefLikeIdentifiersAsRefs: true,
+						validateRefAccessDuringRender: false,
+					},
 				},
 			],
 		},
