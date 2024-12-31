@@ -7,6 +7,7 @@ const reactHooks = require( 'eslint-plugin-react-hooks' );
 module.exports = [
 	react.configs.flat.recommended,
 	{
+		name: '@wordpress/react',
 		languageOptions: {
 			parserOptions: {
 				ecmaFeatures: {

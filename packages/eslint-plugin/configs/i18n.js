@@ -1,4 +1,5 @@
 module.exports = {
+	name: '@wordpress/i18n',
 	plugins: {
 		'@wordpress': require( '../plugin' ),
 	},

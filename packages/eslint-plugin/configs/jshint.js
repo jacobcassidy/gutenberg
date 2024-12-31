@@ -1,4 +1,5 @@
 module.exports = {
+	name: '@wordpress/jshint',
 	rules: {
 		curly: 'error',
 		eqeqeq: 'error',

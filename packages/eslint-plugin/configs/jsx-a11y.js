@@ -6,6 +6,7 @@ const jsxA11y = require( 'eslint-plugin-jsx-a11y' );
 module.exports = [
 	jsxA11y.flatConfigs.recommended,
 	{
+		name: '@wordpress/jsx-a11y',
 		rules: {
 			'jsx-a11y/label-has-associated-control': [
 				'error',

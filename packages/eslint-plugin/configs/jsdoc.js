@@ -75,6 +75,7 @@ const typescriptUtilityTypes = [
 module.exports = [
 	jsdoc.configs[ 'flat/recommended' ],
 	{
+		name: '@wordpress/jsdoc',
 		settings: {
 			jsdoc: {
 				preferredTypes: {

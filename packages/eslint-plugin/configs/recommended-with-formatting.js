@@ -14,6 +14,7 @@ const config = [
 	...require( './esnext.js' ),
 	require( './i18n.js' ),
 	{
+		name: '@wordpress/formatting',
 		plugins: { import: importPlugin },
 		languageOptions: {
 			globals: {

@@ -1,6 +1,7 @@
 module.exports = [
 	...require( './jsdoc.js' ),
 	{
+		name: '@wordpress/es5',
 		rules: {
 			'array-bracket-spacing': [ 'error', 'always' ],
 			'array-callback-return': 'error',

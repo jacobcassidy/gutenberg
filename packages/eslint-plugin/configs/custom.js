@@ -1,5 +1,6 @@
 module.exports = [
 	{
+		name: '@wordpress/custom/common',
 		plugins: {
 			'@wordpress': require( '../plugin' ),
 		},
@@ -14,6 +15,7 @@ module.exports = [
 		},
 	},
 	{
+		name: '@wordpress/custom/native',
 		files: [ '*.native.js' ],
 		rules: {
 			'@wordpress/no-base-control-with-label-without-id': 'off',
@@ -22,6 +24,7 @@ module.exports = [
 		},
 	},
 	{
+		name: '@wordpress/custom/test',
 		files: [
 			'*.test.js',
 			'**/test/*.js',

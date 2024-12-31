@@ -6,6 +6,7 @@ const ESLintParser = require( '@babel/eslint-parser' );
 const babelParser = require( '@babel/eslint-parser' );
 
 const config = {
+	name: '@wordpress/esnext',
 	languageOptions: {
 		ecmaVersion: 6,
 		parser: ESLintParser,

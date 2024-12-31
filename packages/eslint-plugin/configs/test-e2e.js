@@ -6,6 +6,7 @@ const globals = require( 'globals' );
 
 module.exports = {
 	...jest.configs[ 'flat/recommended' ],
+	name: '@wordpress/test-e2e',
 	languageOptions: {
 		globals: {
 			...jest.configs[ 'flat/recommended' ].languageOptions.globals,
