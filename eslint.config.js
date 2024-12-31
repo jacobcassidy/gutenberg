@@ -462,18 +462,6 @@ module.exports = [
 			],
 		},
 	},
-	{
-		files: [
-			// Components package.
-			'packages/components/src/**/*.[tj]s?(x)',
-			// Navigation block.
-			'packages/block-library/src/navigation/**/*.[tj]s?(x)',
-		],
-		ignores: [ ...developmentFiles ],
-		rules: {
-			'react-hooks/exhaustive-deps': 'error',
-		},
-	},
 	...wordPress.configs[ 'test-unit' ].map( ( config ) => ( {
 		...config,
 		files: [
