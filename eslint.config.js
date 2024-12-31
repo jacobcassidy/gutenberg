@@ -207,8 +207,7 @@ module.exports = [
 	...wordPress.configs.recommended,
 	comments.recommended,
 	...storybook.configs[ 'flat/recommended' ],
-	...tseslint.config( {
-		extends: [ tseslint.configs.base ],
+	{
 		files: [ '**/*.ts', '**/*.tsx' ],
 		rules: {
 			'@typescript-eslint/no-restricted-imports': [
@@ -232,7 +231,7 @@ module.exports = [
 				},
 			],
 		},
-	} ),
+	},
 	{
 		plugins: {
 			'react-compiler': reactCompiler,

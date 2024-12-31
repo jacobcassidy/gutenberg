@@ -20,7 +20,7 @@ const config = [ ...require( './recommended-with-formatting.js' ) ];
 
 if ( isPackageInstalled( 'typescript' ) ) {
 	const typeScriptConfig = tseslint.config( {
-		extends: [ ...tseslint.configs.recommended ],
+		extends: [ tseslint.configs.base, tseslint.configs.eslintRecommended ],
 		files: [ '**/*.ts', '**/*.tsx' ],
 		settings: {
 			'import/resolver': {
