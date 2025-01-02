@@ -15,12 +15,12 @@ const eslintConfig = [
 	{
 		ignores: [ '**/build/', '**/node_modules/', '**/vendor/' ],
 	},
-	...wordPress.configs.recommended.map( ( config ) => ( {
+	...wordPress.configs.flat.recommended.map( ( config ) => ( {
 		...config,
 		files: [ '**/.*js', '**/*.jsx', '**/*.ts', '**/*.tsx' ],
 	} ) ),
 	{
-		...wordPress.configs[ 'test-unit' ],
+		...wordPress.configs.flat[ 'test-unit' ],
 		// Unit test files and their helpers only.
 		files: [ '**/@(test|__tests__)/**/*.js', '**/?(*.)test.js' ],
 	},

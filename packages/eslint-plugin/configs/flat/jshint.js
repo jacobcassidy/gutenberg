@@ -1,4 +1,5 @@
 module.exports = {
+	name: '@wordpress/jshint',
 	rules: {
 		curly: 'error',
 		eqeqeq: 'error',
@@ -9,7 +10,10 @@ module.exports = {
 		'no-trailing-spaces': 'error',
 		'no-undef': 'error',
 		'no-unused-expressions': 'error',
-		'no-unused-vars': [ 'error', { ignoreRestSiblings: true } ],
+		'no-unused-vars': [
+			'error',
+			{ ignoreRestSiblings: true, caughtErrors: 'none' },
+		],
 		'one-var': [ 'error', 'always' ],
 		quotes: [ 'error', 'single' ],
 		'wrap-iife': [ 'error', 'any' ],

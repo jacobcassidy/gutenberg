@@ -27,7 +27,8 @@
 		"configs",
 		"rules",
 		"utils",
-		"index.js"
+		"index.js",
+		"plugin.js"
 	],
 	"main": "index.js",
 	"dependencies": {
@@ -50,7 +51,7 @@
 	},
 	"peerDependencies": {
 		"@babel/core": ">=7",
-		"eslint": ">=9",
+		"eslint": "^8.57.0 || ^9.0.0",
 		"prettier": ">=3",
 		"typescript": ">=5"
 	},

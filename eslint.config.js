@@ -204,7 +204,7 @@ module.exports = [
 			'!**/.*.js',
 		],
 	},
-	...wordPress.configs.recommended,
+	...wordPress.configs.flat.recommended,
 	comments.recommended,
 	...storybook.configs[ 'flat/recommended' ],
 	{
@@ -480,7 +480,7 @@ module.exports = [
 			],
 		},
 	},
-	...wordPress.configs[ 'test-unit' ].map( ( config ) => ( {
+	...wordPress.configs.flat[ 'test-unit' ].map( ( config ) => ( {
 		...config,
 		files: [
 			'packages/jest*/**/*.js',
@@ -506,7 +506,7 @@ module.exports = [
 		],
 	} ) ),
 	{
-		...wordPress.configs[ 'test-e2e' ],
+		...wordPress.configs.flat[ 'test-e2e' ],
 		files: [ 'packages/e2e-test*/**/*.js' ],
 		ignores: [ 'packages/e2e-test-utils-playwright/**/*.js' ],
 		rules: {
@@ -514,7 +514,7 @@ module.exports = [
 		},
 	},
 	{
-		...wordPress.configs[ 'test-playwright' ],
+		...wordPress.configs.flat[ 'test-playwright' ],
 		files: playwrightFiles,
 		rules: {
 			'@wordpress/no-global-active-element': 'off',
