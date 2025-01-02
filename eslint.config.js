@@ -13,7 +13,7 @@ const tseslint = require( 'typescript-eslint' );
 const ssrFriendly = require( 'eslint-plugin-ssr-friendly' );
 const react = require( 'eslint-plugin-react' );
 const reactCompiler = require( 'eslint-plugin-react-compiler' );
-const { fixupConfigRules, fixupPluginRules } = require( '@eslint/compat' );
+const { fixupPluginRules } = require( '@eslint/compat' );
 
 /**
  * Internal dependencies
@@ -491,7 +491,7 @@ module.exports = [
 	} ) ),
 	...[
 		jestDom.configs[ 'flat/recommended' ],
-		...fixupConfigRules( testingLibrary.configs[ 'flat/react' ] ),
+		testingLibrary.configs[ 'flat/react' ],
 		jest.configs[ 'flat/recommended' ],
 	].map( ( config ) => ( {
 		...config,
