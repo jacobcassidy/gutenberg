@@ -12,18 +12,15 @@ const {
 	getArgsFromCLI,
 	hasArgInCLI,
 	hasFileArgInCLI,
-	hasPackageProp,
 	hasProjectFile,
+	hasPackageProp,
 } = require( '../utils' );
 
 const args = getArgsFromCLI();
 
 const defaultFilesArgs = hasFileArgInCLI() ? [] : [ '.' ];
 
-// See: https://eslint.org/docs/user-guide/configuring#using-configuration-files-1.
-const hasLintConfig =
-	hasArgInCLI( '-c' ) ||
-	hasArgInCLI( '--config' ) ||
+const hasLegacyLintConfig =
 	hasProjectFile( '.eslintrc.js' ) ||
 	hasProjectFile( '.eslintrc.json' ) ||
 	hasProjectFile( '.eslintrc.yaml' ) ||
@@ -32,35 +29,69 @@ const hasLintConfig =
 	hasProjectFile( '.eslintrc' ) ||
 	hasPackageProp( 'eslintConfig' );
 
+if ( hasLegacyLintConfig ) {
+	// Backward compatibility with eslintrc mode.
+	// See: https://eslint.org/docs/latest/use/configure/configuration-files-deprecated.
+	const hasIgnoredFiles =
+		hasArgInCLI( '--ignore-path' ) || hasProjectFile( '.eslintignore' );
+
+	const legacyIgnoreArgs = ! hasIgnoredFiles
+		? [
+				'--ignore-pattern',
+				'build',
+				'--ignore-pattern',
+				'node_modules',
+				'--ignore-pattern',
+				'vendor',
+		  ]
+		: [];
+
+	const legacyExtArgs = hasArgInCLI( '--ext' )
+		? []
+		: [ '--ext', 'js,jsx,ts,tsx' ];
+
+	process.env.ESLINT_USE_FLAT_CONFIG = 'false';
+
+	const result = spawn(
+		resolveBin( 'eslint' ),
+		[ ...legacyIgnoreArgs, ...legacyExtArgs, ...args, ...defaultFilesArgs ],
+		{ stdio: 'inherit' }
+	);
+
+	process.emitWarning(
+		'Deprecated eslintrc configuration file detected. The support will be finished soon. See https://github.com/WordPress/gutenberg/pull/65648 for details.',
+		'WordPressScriptsWarning'
+	);
+
+	// Don't use process.exit, warnings are not shown that way.
+	return result.status;
+}
+
+// Enforce flat mode for ESLint v8.
+process.env.ESLINT_USE_FLAT_CONFIG = 'true';
+
+// See: https://eslint.org/docs/latest/use/configure/configuration-files.
+const hasLintConfig =
+	hasArgInCLI( '-c' ) ||
+	hasArgInCLI( '--config' ) ||
+	hasProjectFile( 'eslint.config.js' ) ||
+	hasProjectFile( 'eslint.config.mjs' ) ||
+	hasProjectFile( 'eslint.config.cjs' ) ||
+	hasProjectFile( 'eslint.config.ts' ) ||
+	hasProjectFile( 'eslint.config.mts' ) ||
+	hasProjectFile( 'eslint.config.cts' );
+
 // When a configuration is not provided by the project, use from the default
 // provided with the scripts module. Instruct ESLint to avoid discovering via
-// the `--no-eslintrc` flag, as otherwise it will still merge with inherited.
+// the `--no-config-lookup` flag.
 const defaultConfigArgs = ! hasLintConfig
-	? [ '--no-eslintrc', '--config', fromConfigRoot( '.eslintrc.js' ) ]
+	? [ '--no-config-lookup', '--config', fromConfigRoot( 'eslint.config.js' ) ]
 	: [];
-
-// See: https://eslint.org/docs/user-guide/configuring#ignoring-files-and-directories.
-const hasIgnoredFiles =
-	hasArgInCLI( '--ignore-path' ) || hasProjectFile( '.eslintignore' );
-
-const defaultIgnoreArgs = ! hasIgnoredFiles
-	? [ '--ignore-path', fromConfigRoot( '.eslintignore' ) ]
-	: [];
-
-const defaultExtArgs = hasArgInCLI( '--ext' )
-	? []
-	: [ '--ext', 'js,jsx,ts,tsx' ];
 
 const result = spawn(
 	resolveBin( 'eslint' ),
-	[
-		...defaultConfigArgs,
-		...defaultIgnoreArgs,
-		...defaultExtArgs,
-		...args,
-		...defaultFilesArgs,
-	],
+	[ ...defaultConfigArgs, ...args, ...defaultFilesArgs ],
 	{ stdio: 'inherit' }
 );
 
-process.exit( result.status );
+return result.status;
